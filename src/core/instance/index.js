@@ -1,3 +1,8 @@
+/**
+ * src/core/instance/index.js
+ * 
+ * commentBy: cai jieying
+ */
 import { initMixin } from './init'
 import { stateMixin } from './state'
 import { renderMixin } from './render'
