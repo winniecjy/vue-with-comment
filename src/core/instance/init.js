@@ -1,3 +1,9 @@
+/**
+ * src/core/instance/init.js
+ * 
+ * commentBy: cai jieying
+ */
+
 /* @flow */
 
 import config from '../config'
