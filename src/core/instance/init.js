@@ -21,10 +21,11 @@ let uid = 0
 export function initMixin (Vue: Class<Component>) {
   Vue.prototype._init = function (options?: Object) {
     const vm: Component = this
-    // a uid
+    // a uid Vue实例标识
     vm._uid = uid++
 
     let startTag, endTag
+    // 性能统计相关，在计算代码覆盖率时会被忽略
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
       startTag = `vue-perf-start:${vm._uid}`
@@ -32,15 +33,15 @@ export function initMixin (Vue: Class<Component>) {
       mark(startTag)
     }
 
-    // a flag to avoid this being observed
+    // a flag to avoid this being observed 标识this，避免this被监听
     vm._isVue = true
-    // merge options
+    // merge options，_isComponent为内部组件标识
     if (options && options._isComponent) {
       // optimize internal component instantiation
       // since dynamic options merging is pretty slow, and none of the
       // internal component options needs special treatment.
-      initInternalComponent(vm, options)
-    } else {
+      initInternalComponent(vm, options) // 初始化内部组件
+    } else { // 合并默认参数
       vm.$options = mergeOptions(
         resolveConstructorOptions(vm.constructor),
         options || {},
